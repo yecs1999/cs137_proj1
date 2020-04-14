@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="info">
-            <h2>Product Name</h2>
+            <h2 id="product">Product Name</h2>
             <p>
             <form id="infoForm" action="">
                 First Name:
@@ -22,7 +22,7 @@
                 <input type="text" name="lastname" id="lastname" value="" size=15>
                 <br/>
                 Phone Number:
-                <input type="text" name="phone" id="phone" value="" size=10>
+                <input type="text" name="phone" id="phone" value="" size=10 onkeypress="return isDigit(event)">
                 <br/>
                 E-mail Address:
                 <input type="text" name="email" id="email" value="" size=20>
@@ -30,14 +30,14 @@
                 Shipping Address:
                 <input type="text" name="address" id="address" value="" size=30>
                 Shipping Method:
-                <select name="method" id="method">
+                <select name="method" id="method" onchange="enableAddress()">
                     <option value="standard" selected="selected">Standard (7 days)</option>
                     <option value="fast">Fast (4 days)</option>
                     <option value="pickup">Pickup</option>
                 </select>
                 <br/>
                 Payment Info:
-                <input type="text" name="card" id="card" value="" size=16>
+                <input type="text" name="card" id="card" value="" size=16 onkeypress="return isDigit(event)">
                 <br/>
                 <input type="button" name="submit" id="submit" value="Submit" onClick="submitInfo()">
             </form>

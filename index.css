@@ -14,7 +14,9 @@ h1{
     margin-right: 10px;
     font-size:20px;
 }.banner{
-    margin: 0 auto;
+    margin: left;
+    float: left;
+    margin-left: 250px;
     width: 800px;
     height: 100px;
     -moz-border-radius: 20px;
@@ -25,16 +27,23 @@ h1{
 }
 
 div.info h2{
+    
     margin: 0 auto;
     text-align: center;
     padding-top: 5px;
+    font-family: "Palatino Linotype";
 }
 div.info p{
-    margin: 0 auto;
-    width: 700px;
+    margin: 200px;
+    margin-top: 10px;
+    width: 350px;
     height: 75px;
     text-justify: left;
+    float: right;
+    font-family: "Palatino Linotype";
 }
+
+
 
 
 

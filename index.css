@@ -21,6 +21,7 @@ h1{
     height: 100px;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
+    border-radius: 20px;
     padding-left:100px;
     background: #547191 url(car.png) no-repeat left; 
     font-family: "Palatino Linotype";

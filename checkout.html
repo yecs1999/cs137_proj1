@@ -11,13 +11,13 @@
                 The lowest priced cars anywhere
             </div>
         </div>
-        <div class="info">
-            <h2 id="product">Product Name</h2>
-            <p>
-            <form id="infoForm" action="">
+        <div class="checkout">
+            <br/>
+            <h2 id="product">Placeholder Product Name</h2>
+            <div style="text-align: center;">
+            <form id="checkoutForm" action="">
                 First Name:
                 <input type="text" name="firstname" value="" size=15>
-                <br/>
                 Last Name:
                 <input type="text" name="lastname" id="lastname" value="" size=15>
                 <br/>
@@ -39,9 +39,9 @@
                 Payment Info:
                 <input type="text" name="card" id="card" value="" size=16 onkeypress="return isDigit(event)">
                 <br/>
-                <input type="button" name="submit" id="submit" value="Submit" onClick="submitInfo()">
+                <input type="button" name="submit" id="submit" value="Submit" onClick="submitCheckout()">
             </form>
-            </p>
+            </div>
         </div>
         <script type="text/javascript" src="checkout.js">
         </script>

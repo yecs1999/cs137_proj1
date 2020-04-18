@@ -22,7 +22,7 @@
                 <input type="text" name="lastname" id="lastname" value="" size=15>
                 <br/>
                 Phone Number:
-                <input type="text" name="phone" id="phone" value="" size=10 onkeypress="return isDigit(event)">
+                <input type="text" name="phone" id="phone" value="" size=10 onkeypress="return isDigit(event, 'Phone Number')">
                 <br/>
                 E-mail Address:
                 <input type="text" name="email" id="email" value="" size=20>
@@ -37,7 +37,7 @@
                 </select>
                 <br/>
                 Payment Info:
-                <input type="text" name="card" id="card" value="" size=16 onkeypress="return isDigit(event)">
+                <input type="text" name="card" id="card" value="" size=16 onkeypress="return isDigit(event, 'Payment Info')">
                 <br/>
                 <input type="button" name="submit" id="submit" value="Submit" onClick="submitCheckout()">
             </form>

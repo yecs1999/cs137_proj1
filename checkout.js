@@ -41,8 +41,9 @@ function addressToString() {
 function fieldsEmpty(listOfFields, listOfFieldsNames){
     for (i = 0; i<listOfFields.length; ++i)
     {
+        if(method === "pickup" && i === 5) i = 10;
         let clearedElement = listOfFields[i].trim();
-        if(clearedElement == "")
+        if(clearedElement === "")
         {
             alert("Your " + listOfFieldsNames[i] + " cannot be blank. Please enter a " + listOfFieldsNames[i] + ".");
             return true;
@@ -62,24 +63,24 @@ function submitCheckout() {
     fillAddress();
     method = checkoutForm.method.value;
     var card = checkoutForm.card.value;
+    var cvv = checkoutForm.cvv.value;
 
-    let allFields = [firstname, lastname, phone, email, address, card];
-    let allFieldsName = ["First Name", "Last Name", "Phone Number", "Email-Address", "Shipping Address", "Payment Info"];
+    let allFields = [firstname, lastname, code, phone, email, address[0].value, address[1].value, address[2].value, address[3].value, address[4].value, card, cvv];
+    let allFieldsName = ["First Name", "Last Name", "International Code", "Phone Number", "Email-Address", "Country", "Street Address", "City", "State/Provence", "Postal Code", "Card Number", "CVV"];
     if (!fieldsEmpty(allFields,allFieldsName)){
-
-    console.log("Hi, " + firstname + " " + lastname + "!");
-    var composeEmail = "mailto:" + email
-        + "?subject=Vending Cars Order Confirmation"
-        + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + product + " has been placed ";
-    if(method === "pickup") {
-        composeEmail += "and will be ready for pickup. ";
-    } else if(method === "standard") {
-        composeEmail += "and will be delivered to " + addressToString() + " in 7 days. ";
-    } else {
-        composeEmail += "and will be delivered to " + addressToString() + " in 4 days. ";
-    }
-    composeEmail += "%0A%0AIf there is any delay, we will call your number at " + phone + ". "
-        + "%0A%0AThank you for shopping from Vending Cars!%0A%0A";
-    window.location.href = composeEmail;
+        console.log("Hi, " + firstname + " " + lastname + "!");
+        var composeEmail = "mailto:" + email
+            + "?subject=Vending Cars Order Confirmation"
+            + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + product + " has been placed ";
+        if(method === "pickup") {
+            composeEmail += "and will be ready for pickup. ";
+        } else if(method === "standard") {
+            composeEmail += "and will be delivered to " + addressToString() + " in 7 days. ";
+        } else {
+            composeEmail += "and will be delivered to " + addressToString() + " in 4 days. ";
+        }
+        composeEmail += "%0A%0AIf there is any delay, we will call your number at " + phone + ". "
+            + "%0A%0AThank you for shopping from Vending Cars!%0A%0A";
+        window.location.href = composeEmail;
     }
 }

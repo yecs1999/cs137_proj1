@@ -16,7 +16,7 @@ h1{
 }.banner{
     margin: left;
     float: left;
-    margin-left: 200px;
+    margin-left: 300px;
     width: 800px;
     height: 100px;
     -moz-border-radius: 20px;
@@ -29,8 +29,7 @@ h1{
 
 div.sidebar{
     background-color: #9abfe8;
-    border: solid #547191 2px;
-    border-radius: 25px;
+    border: solid black 2px;
     margin-right: 120px;
     width: 350px;
     height: 700px;
@@ -79,7 +78,7 @@ div.contact h2{
     width: 350px;
     height: 10px;
     text-align: center;
-    font-family: inherit;   
+    font-family: inherit;
 }
 div.contact p{
     margin-left: 10px;
@@ -88,7 +87,7 @@ div.contact p{
     height: 175px;
     text-justify: left;
     text-align: left;
-    font-family: inherit;   
+    font-family: inherit;
 }
 
 div.categories{
@@ -99,7 +98,7 @@ div.categories{
 }
 
 div.categories table{
-    background-color: #c3d6eb; 
+    background-color: #c3d6eb;
     table-layout: fixed;
     width: 100%;
     border: solid #547191 2px;
@@ -121,14 +120,23 @@ div.categories td{
     width: 250px;
 }
 img:hover {
-    position: relative; 
+    position: relative;
     height: 480px;
     width: 640px;
 }
 
-
-
-
-
-
-
+div.checkout h2{
+    margin-top: 150px;
+    text-align: center;
+    font-family: inherit;
+}
+div.checkout p{
+    text-align: center;
+}
+div.checkout form{
+    margin-top: 0px;
+    line-height: 1.5;
+    display: inline-block;
+    text-align: left;
+    font-family: inherit;
+}

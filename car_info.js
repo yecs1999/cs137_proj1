@@ -5,6 +5,7 @@ var tags = ["pid", "make", "model", "trim", "color", "year",
             "odo", "gearbox", "engine", "price", "location", 
             "description"]
 
+//initialize the car info page on load
 function init()
 {
     let pid = getPID();
@@ -27,7 +28,7 @@ const getPID = ()=>
             return kv[1];
         }
     }
-    return -1;
+    return -1;  
 }
 
 //Gets the XML response object

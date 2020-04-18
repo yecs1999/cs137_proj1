@@ -38,6 +38,27 @@
                 </p>
             </div>
         </div>
+        <script src="car-info.js" type="text/javascript"></script>
+        <div class="categories">
+            <table id="car_table">
+                <script>var resp = getXML(xmlPath);
+                        var catdict = {0: "sports", 1: "hatch", 2: "sedan", 3: "suv", 4: "minivan"};
+                        var tbody = "<thead><tr><th>Sports</th><th>Hatch</th><th>Sedan</th><th>SUV</th><th>Minivan</th></tr></thead><tbody>";
+                        for (var j=0; j < 2; j++){
+                            var categories = resp.documentElement.childNodes;  
+                            tbody += "<tr>";
+                            for (var i = 0; i< categories.length; i++){
+                                var cars = categories[i].childNodes;
+                                var imgpid = cars[j].getElementsByTagName("pid")[0].innerHTML;
+                                var path = "./img/" + catdict[i] + "/" + imgpid + "/" + "1.jpg";
+                                tbody += "<td><a href=car-info.html?id=" + imgpid + "><img src=" + path + " width=250 height=250></a><b>" + cars[j].getElementsByTagName("make")[0].innerHTML + " " + cars[j].getElementsByTagName("model")[0].innerHTML + " " +
+                                            cars[j].getElementsByTagName("year")[0].innerHTML + "<br>$" + cars[j].getElementsByTagName("price")[0].innerHTML + "</b></td>";
+                            }tbody += "</tr>";
+                        }tbody += "</tbody>";
+                        document.getElementById("car_table").innerHTML = tbody;
+                </script>
+            </table>
+        </div>
     </body>
 
 </html>

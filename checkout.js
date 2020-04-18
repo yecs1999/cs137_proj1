@@ -2,6 +2,32 @@ var product;
 var method;
 var address;
 
+const getProduct = ()=>
+{
+    let query = window.location.search.substring(1);
+    console.log(query);
+    let query_list = query.split("&");
+    var dict = new Object();
+    for (var i = 0; i < query_list.length; ++i)
+    {
+        let kv = query_list[i].split("=");
+        dict[kv[0]] = decodeURIComponent(kv[1]);
+    }
+    return dict;
+}
+
+function productToString() {
+    var str = product["make"] + " ";
+    str += product["model"] + " ";
+    str += product["trim"];
+    return str;
+}
+
+function setupCheckout() {
+    product = getProduct();
+    document.getElementById("product").innerText = "Order for " + productToString();
+}
+
 function isDigit(event, fieldName) {
     var key = event.keyCode;
 
@@ -53,7 +79,7 @@ function fieldsEmpty(listOfFields, listOfFieldsNames){
 }
 
 function submitCheckout() {
-    product = document.getElementById("product").innerText;
+    //product = document.getElementById("product").innerText;
     var checkoutForm = document.getElementById("checkoutForm");
     var firstname = checkoutForm.firstname.value;
     var lastname = checkoutForm.lastname.value;
@@ -71,7 +97,7 @@ function submitCheckout() {
         console.log("Hi, " + firstname + " " + lastname + "!");
         var composeEmail = "mailto:" + email
             + "?subject=Vending Cars Order Confirmation"
-            + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + product + " has been placed ";
+            + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + productToString() + " has been placed ";
         if(method === "pickup") {
             composeEmail += "and will be ready for pickup. ";
         } else if(method === "standard") {

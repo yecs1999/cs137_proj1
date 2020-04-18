@@ -38,6 +38,45 @@ function isDigit(event, fieldName) {
     return false;
 }
 
+function eraseNonDigits(value) {
+    var str = "";
+    for(var i = 0; i < value.length; ++i) {
+        if(value.charCodeAt(i) > 47 && value.charCodeAt(i) < 58) {
+            str += value.charAt(i);
+        }
+    }
+    return str;
+}
+
+function conformIntlCode(value) {
+    document.getElementById("code").value = "+" + eraseNonDigits(value);
+    //conformPhoneNumber("");
+}
+
+function setCursorPosition(field, position) {
+    if(field.setSelectionRange) {
+        field.focus();
+        field.setSelectionRange(position, position);
+    }
+}
+
+function conformPhoneNumber(value) {
+    var num = eraseNonDigits(value);
+    if(document.getElementById("code").value === "+1") {
+        var str = "(   )   -    ";
+        for(var i = 0; i < num.length; ++i) {
+            str = str.replace(" ", num.charAt(i));
+        }
+        var phone = document.getElementById("phone");
+        document.getElementById("phone").value = str;
+        var cursor = 1 + num.length;
+        if(cursor >= 4) cursor += 1;
+        if(cursor >= 8) cursor += 1;
+        setCursorPosition(document.getElementById("phone"), cursor);
+    } else
+        document.getElementById("phone").value = num;
+}
+
 function fillAddress() {
   address = new Array(5);
   address[0] = document.getElementById("country");

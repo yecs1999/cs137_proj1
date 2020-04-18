@@ -11,8 +11,10 @@ function init()
     let pid = getPID();
     let resp = getXML(xmlPath);
     let car = getCar(resp, pid);
-    var info = initInfoDict(car);
-    console.log(info);
+    let info = initInfoDict(car);
+    let imgPaths = getImagePaths(info);
+    insertImages(imgPaths);
+    insertDescriptions(info);    
 }
 
 //Extracts the pid from the url
@@ -20,7 +22,7 @@ const getPID = ()=>
 {
     let query = window.location.search.substring(1);
     let query_list = query.split("&");
-    for (var i = 0; i < query_list.length; ++i)
+    for (var i = 0; i < query_list.length; ++i)  
     {
         let kv = query_list[i].split("=");
         if (kv[0] == "pid")
@@ -70,5 +72,40 @@ const initInfoDict = (car) =>
     {
         dict[tag] = getCarInfo(car, tag);
     }
+    dict["category"] = car.parentNode.tagName;
     return dict;
 }
+
+const getImagePaths = (info) =>
+{
+    var paths = [];
+    for(var i = 1; i <= 3; ++i)
+    {
+        paths.push("./img/" + info["category"] + "/" + info["pid"] + "/" + i + ".jpg");
+    }
+    return paths;   
+}
+
+const insertImages = (paths) =>
+{
+    var imgsDiv = document.getElementsByClassName("images")[0];
+    for(const path of paths)
+    {
+        imgsDiv.innerHTML += "<img src=" + path + " width=350 height=350>";
+    } 
+}
+
+const insertDescriptions = (info) =>
+{
+    var desDiv = document.getElementById("description_table");
+    desDiv.innerHTML += "<thead><tr><th colspan=\"2\">Specifications</th></tr></thead> <tbody>";
+
+    for(var i = 1; i < tags.length; ++i)
+    {
+        let tagName = tags[i].replace(/^./,tags[i][0].toUpperCase());
+        desDiv.innerHTML += "<tr><td>" + tagName + "</td>" + "<td>" + info[tags[i]] + "</td>" + "</tr>";
+    }
+    desDiv.innerHTML += "</tbody>";
+
+}
+

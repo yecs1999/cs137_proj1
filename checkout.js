@@ -2,11 +2,13 @@ var product;
 var method;
 var address;
 
-function isDigit(event) {
+function isDigit(event, fieldName) {
     var key = event.keyCode;
+
     if(key > 47 && key < 58) {
         return true;
     }
+    alert("Only digits are allowed in the " + fieldName + " field.");
     return false;
 }
 
@@ -36,6 +38,19 @@ function addressToString() {
     return str;
 }
 
+function fieldsEmpty(listOfFields, listOfFieldsNames){
+    for (i = 0; i<listOfFields.length; ++i)
+    {
+        let clearedElement = listOfFields[i].trim();
+        if(clearedElement == "")
+        {
+            alert("Your " + listOfFieldsNames[i] + " cannot be blank. Please enter a " + listOfFieldsNames[i] + ".");
+            return true;
+        }
+    }
+    return false;
+}
+
 function submitCheckout() {
     product = document.getElementById("product").innerText;
     var checkoutForm = document.getElementById("checkoutForm");
@@ -47,6 +62,11 @@ function submitCheckout() {
     fillAddress();
     method = checkoutForm.method.value;
     var card = checkoutForm.card.value;
+
+    let allFields = [firstname, lastname, phone, email, address, card];
+    let allFieldsName = ["First Name", "Last Name", "Phone Number", "Email-Address", "Shipping Address", "Payment Info"];
+    if (!fieldsEmpty(allFields,allFieldsName)){
+
     console.log("Hi, " + firstname + " " + lastname + "!");
     var composeEmail = "mailto:" + email
         + "?subject=Vending Cars Order Confirmation"
@@ -61,4 +81,5 @@ function submitCheckout() {
     composeEmail += "%0A%0AIf there is any delay, we will call your number at " + phone + ". "
         + "%0A%0AThank you for shopping from Vending Cars!%0A%0A";
     window.location.href = composeEmail;
+    }
 }

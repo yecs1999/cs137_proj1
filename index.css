@@ -114,9 +114,14 @@ div.categories tbody{
 }
 div.categories td{
     border: solid #547191 2px;
-    height: 300px;
+    height: 250px;
+    width: 250px;
 }
-
+img:hover {
+    position: relative; 
+    height: 480px;
+    width: 640px;
+}
 
 
 

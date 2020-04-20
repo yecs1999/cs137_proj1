@@ -14,3 +14,9 @@
   Requirement 9: See the main page and the car info page to see 10+ stylistic properties <br>
   Requirement 10: Mouse over the images in the main page table and see the images get larger <br> 
   Requirement 11: Names and Student ID of group members is in the Sidebar section "Contact Info" <br>
+  
+ <h1>Group Members</h1>
+ Christopher Ye: 93031221
+ Zhen Li: 84257555
+ Emerson Chow: 29527073
+ Luke Falcone: 26133003

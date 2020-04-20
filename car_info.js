@@ -4,6 +4,7 @@ var xmlPath = "./cars.xml"
 var tags = ["pid", "make", "model", "trim", "color", "year",
             "odo", "gearbox", "engine", "price", "location", 
             "description"]
+var info;
 
 //initialize the car info page on load
 function init()
@@ -11,10 +12,10 @@ function init()
     let pid = getPID();
     let resp = getXML(xmlPath);
     let car = getCar(resp, pid);
-    let info = initInfoDict(car);
-    let imgPaths = getImagePaths(info);
+    info = initInfoDict(car);
+    let imgPaths = getImagePaths();
     insertImages(imgPaths);
-    insertDescriptions(info);    
+    insertDescriptions();    
 }
 
 //Extracts the pid from the url
@@ -76,7 +77,7 @@ const initInfoDict = (car) =>
     return dict;
 }
 
-const getImagePaths = (info) =>
+const getImagePaths = () =>
 {
     var paths = [];
     for(var i = 1; i <= 3; ++i)
@@ -95,7 +96,7 @@ const insertImages = (paths) =>
     } 
 }
 
-const insertDescriptions = (info) =>
+const insertDescriptions = () =>
 {
     var desDiv = document.getElementById("description_table");
     desDiv.innerHTML += "<thead><tr><th colspan=\"2\">Specifications</th></tr></thead> <tbody>";
@@ -109,3 +110,7 @@ const insertDescriptions = (info) =>
 
 }
 
+const orderNowOnClick = () =>
+{
+    window.open("./checkout.html?make=" + info["make"] + "&model=" + info["model"] + "&trim=" + info["trim"]);
+}

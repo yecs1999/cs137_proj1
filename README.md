@@ -4,7 +4,7 @@
 2. Go to http://localhost:8559/index.html <br>
 3. Set your mailto: default program to preferred mail client: gmail, mail on windows 10, etc. <br> 
 4. If using gmail, as default program ensure you are logged in with the gmail account you want to use in another tab <br>
-<h2>Main Page<h2>
+<h1>Main Page</h1>
   Requirement 1: See the Sidebar <br>
   Requirement 2, 3, 4: See the Car Table <br>
   Requirement 5: Click on any image in the car table <br>

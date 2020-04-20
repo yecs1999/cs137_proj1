@@ -1,7 +1,7 @@
 
 <h1>How To Run (Requirements)</h1>
 1. Use command "python3 -m http.server 8559" or run your chrome in --allow-file-access-from-files or equivalent for other browsers <br>
-2. Go to http://localhost:8559/index.html <br>
+2. Go to <http://localhost:8559/index.html> <br>
 3. Set your mailto: default program to preferred mail client: gmail, mail on windows 10, etc. <br> 
 4. If using gmail, as default program ensure you are logged in with the gmail account you want to use in another tab <br>
 <h1>Main Page</h1>

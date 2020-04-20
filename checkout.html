@@ -4,7 +4,7 @@
         <title>Vending Cars - Car Buying Made Simple</title>
         <link rel="stylesheet" href="index.css">
     </head>
-    <body>
+    <body onload="setupCheckout()">
         <div class="banner">
             <h1>Vending Cars</h1>
             <div class="slogan">
@@ -22,9 +22,9 @@
                 <input type="text" name="lastname" id="lastname" value="" size=15>
                 <br/>
                 <strong>Phone:</strong> Intl. Code:
-                <input type="text" name="code" id="code" value="" size=3 maxlength="6" onkeypress="return isDigit(event, 'Phone Number')">
+                <input type="text" name="code" id="code" value="+" size=3 maxlength="7" oninput="conformIntlCode(this.value)" onkeypress="return isDigit(event, 'Phone Number')">
                 Number:
-                <input type="text" name="phone" id="phone" value="" size=10 onkeypress="return isDigit(event, 'Phone Number')">
+                <input type="text" name="phone" id="phone" value="" size=10 oninput="conformPhoneNumber(this.value)" onkeypress="return isDigit(event, 'Phone Number')">
                 <br/>
                 <strong>E-mail Address:</strong>
                 <input type="text" name="email" id="email" value="" size=20>

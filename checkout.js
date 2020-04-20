@@ -2,6 +2,32 @@ var product;
 var method;
 var address;
 
+const getProduct = ()=>
+{
+    let query = window.location.search.substring(1);
+    console.log(query);
+    let query_list = query.split("&");
+    var dict = new Object();
+    for (var i = 0; i < query_list.length; ++i)
+    {
+        let kv = query_list[i].split("=");
+        dict[kv[0]] = decodeURIComponent(kv[1]);
+    }
+    return dict;
+}
+
+function productToString() {
+    var str = product["make"] + " ";
+    str += product["model"] + " ";
+    str += product["trim"];
+    return str;
+}
+
+function setupCheckout() {
+    product = getProduct();
+    document.getElementById("product").innerText = "Order for " + productToString();
+}
+
 function isDigit(event, fieldName) {
     var key = event.keyCode;
 
@@ -10,6 +36,45 @@ function isDigit(event, fieldName) {
     }
     alert("Only digits are allowed in the " + fieldName + " field.");
     return false;
+}
+
+function eraseNonDigits(value) {
+    var str = "";
+    for(var i = 0; i < value.length; ++i) {
+        if(value.charCodeAt(i) > 47 && value.charCodeAt(i) < 58) {
+            str += value.charAt(i);
+        }
+    }
+    return str;
+}
+
+function conformIntlCode(value) {
+    document.getElementById("code").value = "+" + eraseNonDigits(value);
+    //conformPhoneNumber("");
+}
+
+function setCursorPosition(field, position) {
+    if(field.setSelectionRange) {
+        field.focus();
+        field.setSelectionRange(position, position);
+    }
+}
+
+function conformPhoneNumber(value) {
+    var num = eraseNonDigits(value);
+    if(document.getElementById("code").value === "+1") {
+        var str = "(   )   -    ";
+        for(var i = 0; i < num.length; ++i) {
+            str = str.replace(" ", num.charAt(i));
+        }
+        var phone = document.getElementById("phone");
+        document.getElementById("phone").value = str;
+        var cursor = 1 + num.length;
+        if(cursor >= 4) cursor += 1;
+        if(cursor >= 8) cursor += 1;
+        setCursorPosition(document.getElementById("phone"), cursor);
+    } else
+        document.getElementById("phone").value = num;
 }
 
 function fillAddress() {
@@ -53,7 +118,7 @@ function fieldsEmpty(listOfFields, listOfFieldsNames){
 }
 
 function submitCheckout() {
-    product = document.getElementById("product").innerText;
+    //product = document.getElementById("product").innerText;
     var checkoutForm = document.getElementById("checkoutForm");
     var firstname = checkoutForm.firstname.value;
     var lastname = checkoutForm.lastname.value;
@@ -71,7 +136,7 @@ function submitCheckout() {
         console.log("Hi, " + firstname + " " + lastname + "!");
         var composeEmail = "mailto:" + email
             + "?subject=Vending Cars Order Confirmation"
-            + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + product + " has been placed ";
+            + "&body=Hi, " + firstname + " " + lastname + "! Your order for " + productToString() + " has been placed ";
         if(method === "pickup") {
             composeEmail += "and will be ready for pickup. ";
         } else if(method === "standard") {

@@ -34,7 +34,7 @@ function isDigit(event, fieldName) {
     if(key > 47 && key < 58) {
         return true;
     }
-    alert("Only digits are allowed in the " + fieldName + " field.");
+    //alert("Only digits are allowed in the " + fieldName + " field.");
     return false;
 }
 
@@ -50,12 +50,12 @@ function eraseNonDigits(value) {
 
 function conformIntlCode(value) {
     document.getElementById("code").value = "+" + eraseNonDigits(value);
-    //conformPhoneNumber("");
+    conformPhoneNumber("");
 }
 
 function setCursorPosition(field, position) {
     if(field.setSelectionRange) {
-        field.focus();
+        //field.focus();
         field.setSelectionRange(position, position);
     }
 }

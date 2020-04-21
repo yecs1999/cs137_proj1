@@ -5,7 +5,6 @@ var address;
 const getProduct = ()=>
 {
     let query = window.location.search.substring(1);
-    console.log(query);
     let query_list = query.split("&");
     var dict = new Object();
     for (var i = 0; i < query_list.length; ++i)
@@ -70,8 +69,8 @@ function conformPhoneNumber(value) {
         var phone = document.getElementById("phone");
         document.getElementById("phone").value = str;
         var cursor = 1 + num.length;
-        if(cursor >= 4) cursor += 1;
-        if(cursor >= 8) cursor += 1;
+        if(cursor >= 5) cursor += 1;
+        if(cursor >= 9) cursor += 1;
         setCursorPosition(document.getElementById("phone"), cursor);
     } else
         document.getElementById("phone").value = num;
@@ -120,11 +119,20 @@ function fieldsEmpty(listOfFields, listOfFieldsNames){
 function creditCheck(card,cvv){
     if(card.length <= 19 && cvv.length == 3){
         return true;
-    } 
+    }
     else{
         alert("Your Credit card info is invalid. Please check CVV or Card");
         return false;
     }
+}
+
+function emailCheck(email) {
+    var emailRegExp = /^\w+[\w-\.]*\@\w+((-\w+)|\w*)\.[a-z]{2,3}$/
+    if(emailRegExp.test(email)) {
+        return true;
+    }
+    alert("Your E-mail is invalid. Please use a valid address.");
+    return false;
 }
 
 function submitCheckout() {
@@ -142,7 +150,7 @@ function submitCheckout() {
 
     let allFields = [firstname, lastname, code, phone, email, address[0].value, address[1].value, address[2].value, address[3].value, address[4].value, card, cvv];
     let allFieldsName = ["First Name", "Last Name", "International Code", "Phone Number", "Email-Address", "Country", "Street Address", "City", "State/Provence", "Postal Code", "Card Number", "CVV"];
-    if (!fieldsEmpty(allFields,allFieldsName) && creditCheck(card,cvv)){
+    if (!fieldsEmpty(allFields,allFieldsName) && creditCheck(card,cvv) && emailCheck(email)){
         console.log("Hi, " + firstname + " " + lastname + "!");
         var composeEmail = "mailto:" + email
             + "?subject=Vending Cars Order Confirmation"

@@ -117,6 +117,16 @@ function fieldsEmpty(listOfFields, listOfFieldsNames){
     return false;
 }
 
+function creditCheck(card,cvv){
+    if(card.length <= 19 && cvv.length == 3){
+        return true;
+    } 
+    else{
+        alert("Your Credit card info is invalid. Please check CVV or Card");
+        return false;
+    }
+}
+
 function submitCheckout() {
     //product = document.getElementById("product").innerText;
     var checkoutForm = document.getElementById("checkoutForm");
@@ -132,7 +142,7 @@ function submitCheckout() {
 
     let allFields = [firstname, lastname, code, phone, email, address[0].value, address[1].value, address[2].value, address[3].value, address[4].value, card, cvv];
     let allFieldsName = ["First Name", "Last Name", "International Code", "Phone Number", "Email-Address", "Country", "Street Address", "City", "State/Provence", "Postal Code", "Card Number", "CVV"];
-    if (!fieldsEmpty(allFields,allFieldsName)){
+    if (!fieldsEmpty(allFields,allFieldsName) && creditCheck(card,cvv)){
         console.log("Hi, " + firstname + " " + lastname + "!");
         var composeEmail = "mailto:" + email
             + "?subject=Vending Cars Order Confirmation"
